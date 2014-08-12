@@ -195,20 +195,22 @@
           return;
         }
         element = element.parentNode || element;
-        _ref = element.getElementsByClassName(this.config.boxClass);
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          box = _ref[_i];
-          if (__indexOf.call(this.all, box) < 0) {
-            this.applyStyle(box, true);
-            this.boxes.push(box);
-            this.all.push(box);
-            _results.push(this.scrolled = true);
-          } else {
-            _results.push(void 0);
+        if (element.getElementsByClassName) {
+          _ref = element.getElementsByClassName(this.config.boxClass);
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            box = _ref[_i];
+            if (__indexOf.call(this.all, box) < 0) {
+              this.applyStyle(box, true);
+              this.boxes.push(box);
+              this.all.push(box);
+              _results.push(this.scrolled = true);
+            } else {
+              _results.push(void 0);
+            }
           }
+          return _results;
         }
-        return _results;
       }
     };
 
